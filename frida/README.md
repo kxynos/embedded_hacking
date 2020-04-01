@@ -1,4 +1,8 @@
-## Install FRIDA on Linux and get up and running.
+# Frida intrumentation toolkit introduction
+
+## Install FRIDA on Linux 
+
+Make use of pip3 to utilise python3, since python2 has retired. 
 
 ```
   pip3 install frida-tools
@@ -10,7 +14,11 @@ Update *~/bashrc* with the following, change <user> with your linux user account
 export PATH=/home/<user>/.local/bin:$PATH
 ```
 
-Let's try to hack the following binary using Frida. 
+## Create a binary and change the return value.
+
+Let's try to hack the following binary using Frida. Return values are used quite often in programming and therefore it is a good thing to learn first. 
+
+First create a binary in Linux.
 
 Save the following into a file *testapp.c* : 
 
@@ -34,14 +42,22 @@ printf("Test function 1 \n");
 
 int testFunc2(){
 printf("Test function 2 \n");
-return 1;
+return 2;
 }
 ```
 Compile it into an executable:
 ```
  gcc -o testapp testapp.c
 ```
-**Aim:** To return something else in the function *testFunc2*.
+
+**Aim:** To return 0 from function *testFunc2* instead of 2.
+```
+$ ./testapp
+Hello, world!
+test func 1 
+test func 2 
+Returned value is : 2 
+```
 
 **First** Get the offset of the function *testFunc2*. 
 
@@ -52,7 +68,7 @@ $ objdump -d testapp | grep -i "tes*"
 00000000000011a0 <testFunc2>:
 ```
 
-So we can clearly see that it lives at location **0x11a0**.
+So we now know that it is located at position: **0x11a0**.
 
 Let's start Frida and try some interactive commands so we can understand Frida a bit more. 
 
@@ -70,13 +86,13 @@ frida -f testapp
 Spawned `testapp`. Use %resume to let the main thread start executing!  
 [Local::testapp]->                                                                        
 ```
-Now get the Base address for the application. We need this to calculate the actual address of the function *testFunc2*. With ASLR enbaled it will be different everytime the application runs. 
+Now to get the Base address for the application. We need this to calculate the actual address of the function *testFunc2*. With ASLR enbaled it will be different everytime the application runs. So we have to calculate it everytime. This is done with add().  
 
 ```
 [Local::testapp]-> Module.findBaseAddress('testapp')                                                                           
 "0x563be2666000"
 ```
-I got my applications current Base address *0x563be2666000* and will add 0x11a0 next. 
+We got my applications current Base address *0x563be2666000* and will add 0x11a0 next. 
 
 ```
 [Local::testapp]-> Module.findBaseAddress('testapp').add(0x11a0)                                                               
@@ -95,7 +111,6 @@ session = frida.attach(pid)
 
 script = session.create_script("""
 const func2 = Module.findBaseAddress('testapp').add(0x11a0);
-send("[*] func2 at : " + func2);
 console.log("[*] func2 at : " + func2);
 """)
 
@@ -103,40 +118,48 @@ script.load()
 frida.resume(pid)
 session.detach()
 ```
+Note: if you don't *detach*, you won't see the messages. 
 
-The *on_message* function allows us to print something out on the console if you are not using Python3 interactive. 
-
+The next thing we want to do is intercept the function and return a different value. *Interceptor.attach(func2, {* allows us to use interceptor to attach to the specified funciton. The *onLeave* has **retval** that we can then manipulate with *.replace()*. So we can now simply replace it with 0.
 
 ```
 from __future__ import print_function
 import frida
 import sys
 
-
-def on_message(message, data):
-    print(message)
-    #print(message['payload'])
-
 pid  = frida.spawn("testapp")
 session = frida.attach(pid)
 script = session.create_script("""
-const func2 = Module.findBaseAddress('testapp').add(0x11a0)
-send("[*] func2 at : " + func2);
+const testFunc2_loc = Module.findBaseAddress('testapp').add(0x11a0)
+console.log("[*] testFunc2 at : " + testFunc2_loc);
 
 
-Interceptor.attach(func2, {
+Interceptor.attach(testFunc2_loc, {
     onEnter: function(args) {
+      console.log("[*] retn: " + retval);
     },
     onLeave: function(retval){
-    retval.replace(0);
+      console.log("[*] Previous return value: " + retval);
+      retval.replace(0);
+      console.log("[*] New return value: " + retval);
     }
 });
 """)
-script.on("message", on_message)
 script.load()
 frida.resume(pid)
+session.detach()
 ```
 
-
-
+Run it and you should get something silimar this:
 ```
+$ python3 testapp.py 
+[*] testFunc2 at : 0x55f2499971a0
+Hello, world!
+test func 1 
+test func 2 
+Returned value is : 0 
+[*] Previous return value: 0x2
+[*] New return value: 0x0
+```
+
+Well done, you mananged to alter the outcome of a Linux binary. 
