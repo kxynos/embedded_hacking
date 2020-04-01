@@ -1,5 +1,3 @@
-# Frida intrumentation toolkit introduction
-
 ## Install FRIDA on Linux 
 
 Make use of pip3 to utilise python3, since python2 has retired. 
