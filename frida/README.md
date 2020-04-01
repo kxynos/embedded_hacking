@@ -110,8 +110,8 @@ pid  = frida.spawn("testapp")
 session = frida.attach(pid)
 
 script = session.create_script("""
-const func2 = Module.findBaseAddress('testapp').add(0x11a0);
-console.log("[*] func2 at : " + func2);
+const testFunc2_loc = Module.findBaseAddress('testapp').add(0x11a0)
+console.log("[*] testFunc2 at : " + testFunc2_loc);
 """)
 
 script.load()
