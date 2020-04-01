@@ -92,14 +92,14 @@ Now to get the Base address for the application. We need this to calculate the a
 [Local::testapp]-> Module.findBaseAddress('testapp')                                                                           
 "0x563be2666000"
 ```
-We got my applications current Base address *0x563be2666000* and will add 0x11a0 next. 
+We got my applications current Base address *0x563be2666000* and will add *0x11a0* next. 
 
 ```
 [Local::testapp]-> Module.findBaseAddress('testapp').add(0x11a0)                                                               
 "0x563be26671a0"
 ```
 
-Pleace this into some python3 code. You can try this in the interactive element of Python3 or save it in a file frida-testapp.py.  
+Pleace this into some python3 code. You can try this in the interactive console of Python3 or just save it in a file, e.g., *frida-testapp.py*.  
 
 ```
 from __future__ import print_function
