@@ -1,5 +1,3 @@
-# Frida intrumentation toolkit introduction
-
 ## Create a binary and change the return value.
 
 Let's try to hack the following binary using Frida. Return values are used quite often in programming and therefore it is a good thing to learn first. 
