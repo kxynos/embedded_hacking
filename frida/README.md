@@ -49,8 +49,7 @@ Compile it into an executable:
 ```
  gcc -o testapp testapp.c
 ```
-
-**Aim:** To return 0 from function *testFunc2* instead of 2.
+Execute the binary to see what output you get and that it all works. 
 ```
 $ ./testapp
 Hello, world!
@@ -58,8 +57,9 @@ test func 1
 test func 2 
 Returned value is : 2 
 ```
+**Aim:** To return 0 from function *testFunc2* instead of 2.
 
-**First** Get the offset of the function *testFunc2*. 
+Get the offset of the function *testFunc2*. 
 
 ```
 $ objdump -d testapp | grep -i "tes*"
