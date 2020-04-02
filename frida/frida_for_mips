@@ -1,0 +1,12 @@
+### MIPS binary
+
+
+
+```
+$ git clone --recursive https://github.com/frida/frida
+$ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips
+
+```
+.. revisit it later 
+
+```
