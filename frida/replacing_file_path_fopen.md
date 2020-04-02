@@ -4,7 +4,7 @@ There is a simple program that uses fopen to read one character from a file name
 
 Save the following into a file titled *read_file.c*:
 
-```
+```c
 // code from : https://www.programiz.com/c-programming/c-file-input-output
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,7 +31,7 @@ int main()
 ```
 Compile it:
 
-```
+```bash
 gcc -o read_file read_file.c
 ```
 
@@ -46,7 +46,7 @@ Create a second file *sometext2.txt* with one line in it:
 ```
 
 The output should look like the following: 
-```
+```bash
 $ ./read_file 
 Value of n=1
 ```
@@ -56,14 +56,14 @@ Value of n=1
 After many hours I found that the best way to go about completing this is by replacing the function and then replacing the argument with a new one. I tried to assign a new value to args[0] but this was not possible due to a access violation. 
 
 Therefore, a new path has to be stored in memory. This is accomplished as follows:
-```
+```js
 var newPath = Memory.allocUtf8String("sometext2.txt");
 pathPtr = ptr(newPath);
 ```
 
 There is a check to see if the extention is .txt so we don't replace all the files that use fopen when we execute our program and frida scripts. 
 
-```
+```python
 from __future__ import print_function
 import frida
 import sys
@@ -104,7 +104,7 @@ session.detach()
 ```
 
 If you are successful you should get the following results:
-```
+```bash
 $ python3 frida-read4.py 
 [*] fopen_address at : 0x7ffff7e69740
 Value of n=2
