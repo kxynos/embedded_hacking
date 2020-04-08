@@ -5,6 +5,11 @@
 sudo apt install g++-mips-linux-gnu gcc-mips-linux-gnu flex bison 
 git clone --recursive https://github.com/frida/frida
 
+cd frida
+wget https://github.com/mesonbuild/meson/releases/download/0.51.0/meson-0.51.0.tar.gz
+tar zxf meson-0.51.0.tar.gz
+mv meson-0.51.0 releng/meson
+
 export TARGET=mips-linux-gnu
 
 ```
@@ -48,6 +53,10 @@ line:289
 -Dlibmount=false
 -Dlibmount=disabled
 
+line:301 and 295
+-Dintrospection=false
+-Dintrospection=disabled
+
 line:11
 openssl_version := 1.1.1b
 ```
@@ -58,6 +67,10 @@ openssl_version := 1.1.1f
 ...
 ...
 $(eval $(call make-git-meson-module-rules,glib,build/fs-%/lib/pkgconfig/glib-2.0.pc,$(iconv) build/fs-%/lib/pkgconfig/zlib.pc build/fs-%/lib/pkgconfig/libffi.pc,$(glib_iconv_option) -Dselinux=disabled -Dxattr=false -Dlibmount=disabled -Dinternal_pcre=true -Dtests=false))
+...
+$(eval $(call make-git-meson-module-rules,json-glib,build/fs-%/lib/pkgconfig/json-glib-1.0.pc,build/fs-%/lib/pkgconfig/glib-2.0.pc,-Dintrospection=disabled -Dtests=false))
+...
+$(eval $(call make-git-meson-module-rules,libsoup,build/fs-%/lib/pkgconfig/libsoup-2.4.pc,build/fs-%/lib/pkgconfig/glib-2.0.pc build/fs-%/lib/pkgconfig/sqlite3.pc build/fs-%/lib/pkgconfig/libpsl.pc build/fs-%/lib/pkgconfig/libxml-2.0.pc,-Dgssapi=disabled -Dtls_check=false -Dgnome=false -Dintrospection=disabled -Dvapi=disabled -Dtests=false))
 ...
 ```
 
