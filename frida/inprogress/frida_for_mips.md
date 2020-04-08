@@ -2,7 +2,10 @@
 
 
 ```
-$ git clone --recursive https://github.com/frida/frida
+sudo apt install g++-mips-linux-gnu gcc-mips-linux-gnu flex bison 
+git clone --recursive https://github.com/frida/frida
+
+export TARGET=mips-linux-gnu
 
 ```
 
@@ -11,9 +14,9 @@ Edit *releng/setup-env.sh* to find *host_toolprefix* with the cross-tool prefix 
 $ vi releng/setup-env.sh
 ...
       mips)
-        host_arch_flags="-march=mips1"
-        host_toolprefix="mips-unknown-linux-$libc-"
-...     
+        host_arch_flags="-march=mips1 -mfp32"
+        host_toolprefix="$TARGET-"
+...   
 
 ```
 
@@ -27,6 +30,45 @@ $ vi releng/config.site.in
     ;;
 ...
 ```
+
+Edit: *"xz/configure"*:
+```
+line: 6115
+if test x$ac_cv_prog_cc_c99 = xno ; then
+        as_fn_error $? "No C99 compiler was found." "$LINENO" 5
+fi
+
+if test x$ac_cv_prog_cc_c99 = xyes ; then
+        as_fn_error $? "No C99 compiler was found." "$LINENO" 5
+fi
+```
+Edit "Makefile.sdk.mk"                                                                                
+```
+line:289
+-Dlibmount=false
+-Dlibmount=disabled
+
+line:11
+openssl_version := 1.1.1b
+```
+Should get: 
+```
+...
+openssl_version := 1.1.1f
+...
+...
+$(eval $(call make-git-meson-module-rules,glib,build/fs-%/lib/pkgconfig/glib-2.0.pc,$(iconv) build/fs-%/lib/pkgconfig/zlib.pc build/fs-%/lib/pkgconfig/libffi.pc,$(glib_iconv_option) -Dselinux=disabled -Dxattr=false -Dlibmount=disabled -Dinternal_pcre=true -Dtests=false))
+...
+```
+
+Edit "openssl/Configure"      
+```
+openssl/Configure:        $value = '-mips2' if ($target =~ /mips32/);
+```
+```
+openssl/Configure:        $value = '-mips1' if ($target =~ /mips32/);
+```
+
 
 ```
 $ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips
