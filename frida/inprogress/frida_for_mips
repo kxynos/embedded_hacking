@@ -1,9 +1,23 @@
-### MIPS binary
-
+## MIPS binary cross-compile, Frida example
 
 
 ```
 $ git clone --recursive https://github.com/frida/frida
+
+```
+
+Edit setup-env.sh to find host_toolprefix with the cross-tool prefix :
+```
+# vi releng/setup-env.sh
+...
+      mips)
+        host_arch_flags="-march=mips1"
+        host_toolprefix="mips-unknown-linux-$libc-"
+...     
+
+```
+
+```
 $ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips
 
 ```
