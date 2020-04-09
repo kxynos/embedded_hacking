@@ -66,8 +66,10 @@ if test x$ac_cv_prog_cc_c99 = xyes ; then
         as_fn_error $? "No C99 compiler was found." "$LINENO" 5
 fi
 ```
-
-Edit "build/fs-tmp-linux-mips/openssl/Configure" at line 1233?:     
+(if the file doesn't exist wait for it to crash)
+Edit "openssl/Configure" 
+or     
+Edit "build/fs-tmp-linux-mips/openssl/Configure" at line 1233:     
 ```
 openssl/Configure:        $value = '-mips2' if ($target =~ /mips32/);
 ```
