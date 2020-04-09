@@ -1,6 +1,23 @@
 ## MIPS binary cross-compile, Frida example
 (out of date after recent commits fixes some stuff)
 
+I used Vagrant up for a quick cross-compile VM. 
+Edit: Vagrantfile
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.disksize.size = '50GB'
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "4096"
+  end
+end
+
+```
+Setup environment :
+
 ```
 sudo apt install g++-mips-linux-gnu gcc-mips-linux-gnu flex bison python3-pip 
 git clone --recursive https://github.com/frida/frida
