@@ -1,5 +1,5 @@
 ## MIPS binary cross-compile, Frida example
-
+(out of date after recent commits fixes some stuff)
 
 ```
 sudo apt install g++-mips-linux-gnu gcc-mips-linux-gnu flex bison 
