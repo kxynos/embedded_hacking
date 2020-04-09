@@ -84,3 +84,8 @@ Success! Here's your SDK: build/sdk-linux-mips.tar.bz2
 
 ```
 
+Next attampt to make frida-gum:
+```
+$ make -f Makefile.linux.mk gum-linux-mips 
+```
+
