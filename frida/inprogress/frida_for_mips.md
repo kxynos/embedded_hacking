@@ -1,5 +1,5 @@
 ## MIPS binary cross-compile, Frida example
-(out of date after recent commits fixes some stuff)
+(might be out of date after commits fixes stuff)
 
 I used Vagrant up for a quick cross-compile VM. 
 Edit: Vagrantfile
