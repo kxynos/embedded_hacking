@@ -38,3 +38,29 @@ $ echo -n "0000:00:06.0" > /sys/bus/pci/drivers/ohci-pci/bind
 ls -la /sys/bus/pci/drivers/ohci-pci
 
 ```
+
+Also consider the following: 
+https://unix.stackexchange.com/questions/91027/how-to-disable-usb-autosuspend-on-kernel-3-7-10-or-above
+
+For Ubuntu and Debian, usbcore is compiled in the kernel, so create entries on /etc/modprobe.d will NOT work: we need to change the kernel boot parameters.
+
+Edit the /etc/default/grub file and change the GRUB_CMDLINE_LINUX_DEFAULT line to add the usbcore.autosuspend=-1 option:
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash usbcore.autosuspend=-1"
+```
+Note that quit splash were already present options. So keep other options you have too.
+
+After save the file, update grub:
+```bash
+sudo update-grub
+```
+And reboot.
+
+Now check autosuspend value:
+```bash
+cat /sys/module/usbcore/parameters/autosuspend
+```
+And it should display -1.
+
+In the kernel documentation is stated that someday in the future this param will change to autosuspend_delay_ms (instead of autosuspend).
+
