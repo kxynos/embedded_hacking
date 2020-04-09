@@ -10,6 +10,8 @@ wget https://github.com/mesonbuild/meson/releases/download/0.51.0/meson-0.51.0.t
 tar zxf meson-0.51.0.tar.gz
 mv meson-0.51.0 releng/meson
 
+wget https://github.com/mesonbuild/meson/releases/download/0.51.0/meson-0.51.0.tar.gz; tar zxf meson-0.51.0.tar.gz; mv meson-0.51.0 releng/meson
+
 export TARGET=mips-linux-gnu
 
 ```
@@ -85,6 +87,10 @@ openssl/Configure:        $value = '-mips1' if ($target =~ /mips32/);
 
 ```
 $ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips
+
+cd /capstone
+./make.sh gcc
+cd ..
 
 ```
 .. revisit it later 
