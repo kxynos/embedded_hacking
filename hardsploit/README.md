@@ -1,6 +1,6 @@
 ## Hardsploit command line tool
 
-### Export SPI command line version (no QT library needed)
+### Export SPI command line version (Qt library not needed)
 File: [export_spi.rb](https://github.com/kxynos/embedded_hacking/blob/master/hardsploit/export_spi.rb)
 
 #### Setup 
