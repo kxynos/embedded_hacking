@@ -77,3 +77,6 @@ Date of last modification of the firmware 2019-04-08 15:45:07 +0100
 ```
 
 N.B.: If you are having issues with the USB try [usb_add_remove.md](https://github.com/kxynos/embedded_hacking/blob/master/usb_add_remove.md)
+
+TODO:
+* Make chip settings a seperate file that can be loaded as an argument
