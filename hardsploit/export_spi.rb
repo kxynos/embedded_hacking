@@ -9,10 +9,9 @@
 require 'io/console'
 require_relative '../HardsploitAPI/Core/HardsploitAPI'
 require_relative '../HardsploitAPI/Modules/SPI/HardsploitAPI_SPI'
-#require_relative '../../db/associations2'
 
-#$logFilePath = File.expand_path(File.dirname(__FILE__)) + "/hs_error.log"
-#$dbFilePath = File.expand_path(File.dirname(__FILE__)) + "/db/dev2.db"
+$logFilePath = File.expand_path(File.dirname(__FILE__)) + "/hs_error.log"
+$filepath = File.expand_path(File.dirname(__FILE__)) + "/hs_spi_export.bin"
 
 @endTime_ = ''
 @percent_prv = 0
@@ -44,9 +43,8 @@ require_relative '../HardsploitAPI/Modules/SPI/HardsploitAPI_SPI'
     }
 
 def select_export_file
-	@filepath = File.expand_path(File.dirname(__FILE__)) + "/dump_file.bin"
-    unless @filepath.nil?
-      $file = File.open("#{@filepath}", 'w')
+    unless $filepath.nil?
+      $file = File.open("#{$filepath}", 'w')
     end
     rescue Exception => msg
       logger = Logger.new($logFilePath)
@@ -129,7 +127,7 @@ close_file
 
 puts "[+] HARDSPLOIT SPI export completed successfully"
 puts "[+] " + @endTime_ 
-puts "[+] File saved in : " + @filepath 
+puts "[+] File saved in : " + $filepath 
 
 rescue HardsploitAPI::ERROR::HARDSPLOIT_NOT_FOUND
    puts "[-] HARDSPLOIT Not Found"
