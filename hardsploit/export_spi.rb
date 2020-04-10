@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 #===================================================
 #  Coded by Konstantinos Xynos (2020)
+#  Version: 1.0
 #  Based on Hardsploit API - By Opale Security
 #  www.opale-security.com || www.hardsploit.io
 #  License: GNU General Public License v3
