@@ -13,8 +13,8 @@ require_relative '../HardsploitAPI/Modules/SPI/HardsploitAPI_SPI'
 $logFilePath = File.expand_path(File.dirname(__FILE__)) + "/hs_error.log"
 $filepath = File.expand_path(File.dirname(__FILE__)) + "/hs_spi_export.bin"
 
-@endTime_ = ''
-@percent_prv = 0
+$endTime_ = ''
+$percent_prv = 0
 
 @speeds = {
       '25.00' => 3,
@@ -35,6 +35,7 @@ $filepath = File.expand_path(File.dirname(__FILE__)) + "/hs_spi_export.bin"
 
 @chip_settings_ = {
       'spi_total_size' => 4194304,
+    # 'spi_total_size' => 1194304,
     # 'spi_total_size' => 8388608,
       'start_address' => 0,
       'spi_mode' => 0,
@@ -79,15 +80,15 @@ def callbackSpeedOfTransfert(receiveData)
 end
 
 def callbackProgress(percent:,startTime:,endTime:)
-	if percent > @percent_prv
-		@percent_prv = percent
+	if percent > $percent_prv
+		$percent_prv = percent
 		print "[+] Progress : #{percent}%  Start@ #{startTime}  Stop@ #{endTime} " + "\r"
 		$stdout.flush
 	end
 	if  percent == 100
 		puts "[" 
 	end
-	@endTime_ = "Elasped time #{(endTime-startTime).round(4)} sec"
+	$endTime_ = "Elasped time #{(endTime-startTime).round(4)} sec"
 #	puts "Elasped time #{(endTime-startTime).round(4)} sec"
 end
 
@@ -104,10 +105,10 @@ puts "[+] Number of hardsploit detected :#{HardsploitAPI.getNumberOfBoardAvailab
 HardsploitAPI.instance.getAllVersions
 
 rescue HardsploitAPI::ERROR::HARDSPLOIT_NOT_FOUND
-   puts "[-] HARDSPLOIT Not Found"
+   puts "[-] HARDSPLOIT Not Found\n"
    exit(false)
 rescue HardsploitAPI::ERROR::USB_ERROR
-   puts "[-] USB ERRROR"
+   puts "[-] USB ERRROR \t\t\t"
    exit(false)
 end
 
@@ -126,15 +127,15 @@ select_export_file
 close_file
 
 puts "[+] HARDSPLOIT SPI export completed successfully"
-puts "[+] " + @endTime_ 
+puts "[+] " + $endTime_ 
 puts "[+] File saved in : " + $filepath 
 
 rescue HardsploitAPI::ERROR::HARDSPLOIT_NOT_FOUND
-   puts "[-] HARDSPLOIT Not Found"
+   puts "[-] HARDSPLOIT Not Found\n"
    close_file
    exit(false)
 rescue HardsploitAPI::ERROR::USB_ERROR
-   puts "[-] USB ERRROR"
+   puts "[-] USB ERRROR\t\t\t"
    close_file
    exit(false)
 end
