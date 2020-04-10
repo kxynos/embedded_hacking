@@ -39,7 +39,7 @@ $ ruby export_spi.rb
 $ ./export_spi.rb
 $ ./export_spi.rb nofirmware
 ```
-The *export_spi.rb* command has a **nofirmware** option, which makes dumping even faster (assuming SPI firmware is loaded into the FPGA already, the step is skipped). You might need to load the firmware once at the start and then it won't be needed. Use as and when required.
+The *export_spi.rb* command has a **nofirmware** option, which makes dumping even faster (assuming SPI firmware is loaded into the FPGA already, the step is skipped). You might need to load the firmware once at the start and then it won't be needed. Use as and when required. The file that is generated is **always overwritten**. 
 
 * Examples with output :
 ```bash
