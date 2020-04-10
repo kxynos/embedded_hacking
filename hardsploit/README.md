@@ -3,6 +3,7 @@
 ### Export SPI command line version (Qt library not needed)
 File: [export_spi.rb](https://github.com/kxynos/embedded_hacking/blob/master/hardsploit/export_spi.rb)
 
+[Hardsploit Github page](https://github.com/serma-safety-security)
 #### Setup 
 Download the files (*50-hardsploit.rules* and *export_spi.rb*) from the hardsploit folder.
 
