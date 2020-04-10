@@ -36,7 +36,7 @@ lrwxrwxrwx  1 root root    0 Apr  9 19:26 module -> ../../../../module/ohci_pci
 $ echo -n "0000:00:06.0" > /sys/bus/pci/drivers/ohci-pci/unbind
 $ echo -n "0000:00:06.0" > /sys/bus/pci/drivers/ohci-pci/bind
 ls -la /sys/bus/pci/drivers/ohci-pci
-
+$ echo -n "0000:00:06.0" > /sys/bus/pci/drivers/ohci-pci/unbind ; sleep 2; echo -n "0000:00:06.0" > /sys/bus/pci/drivers/ohci-pci/bind 
 ```
 
 Also consider the following: 
