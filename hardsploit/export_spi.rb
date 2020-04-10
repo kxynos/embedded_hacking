@@ -7,6 +7,7 @@
 #  License URI: http://www.gnu.org/licenses/gpl.txt
 #===================================================
 require 'io/console'
+require 'logger'
 require_relative '../HardsploitAPI/Core/HardsploitAPI'
 require_relative '../HardsploitAPI/Modules/SPI/HardsploitAPI_SPI'
 
