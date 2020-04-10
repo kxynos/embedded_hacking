@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 #===================================================
-#  Create by Konstantinos Xynos (2020)
+#  Coded by Konstantinos Xynos (2020)
 #  Based on Hardsploit API - By Opale Security
 #  www.opale-security.com || www.hardsploit.io
 #  License: GNU General Public License v3
@@ -35,7 +35,6 @@ $percent_prv = 0
 
 @chip_settings_ = {
       'spi_total_size' => 4194304,
-    # 'spi_total_size' => 1194304,
     # 'spi_total_size' => 8388608,
       'start_address' => 0,
       'spi_mode' => 0,
@@ -85,14 +84,11 @@ def callbackProgress(percent:,startTime:,endTime:)
 		print "[+] Progress : #{percent}%  Start@ #{startTime}  Stop@ #{endTime} " + "\r"
 		$stdout.flush
 	end
-	if  percent == 100
-		puts "[" 
-	end
 	$endTime_ = "Elasped time #{(endTime-startTime).round(4)} sec"
 #	puts "Elasped time #{(endTime-startTime).round(4)} sec"
 end
 
-puts " ** Hardsploit SPI export started ** "
+puts " ** Hardsploit SPI export ** "
 
 HardsploitAPI.callbackInfo = method(:callbackInfo)
 HardsploitAPI.callbackData = method(:callbackData)
@@ -105,28 +101,33 @@ puts "[+] Number of hardsploit detected :#{HardsploitAPI.getNumberOfBoardAvailab
 HardsploitAPI.instance.getAllVersions
 
 rescue HardsploitAPI::ERROR::HARDSPLOIT_NOT_FOUND
-   puts "[-] HARDSPLOIT Not Found\n"
+   puts "[-] HARDSPLOIT Not Found"
    exit(false)
 rescue HardsploitAPI::ERROR::USB_ERROR
-   puts "[-] USB ERRROR \t\t\t"
+   puts "[-] USB ERRROR              "
    exit(false)
 end
 
 if ARGV[0] != "nofirmware" then
-	HardsploitAPI.instance.loadFirmware("SPI")
+   puts "[+] Loading SPI firmware onto HARDSPLOIT"
+   HardsploitAPI.instance.loadFirmware("SPI")
+   $percent_prv=0
+   puts "\n" # add a bracket and a new line 
 end
 
 begin
 
+HardsploitAPI.callbackProgress = method(:callbackProgress)
 select_export_file
 
 @spi = HardsploitAPI_SPI.new(speed:@speeds[@chip_settings_['spi_speed']],mode:@chip_settings_['spi_mode'])
 
+puts "[+] HARDSPLOIT SPI export started "
 @spi.spi_Generic_Dump(readSpiCommand:@chip_settings_['spi_command'], startAddress:@chip_settings_['start_address'],stopAddress:@chip_settings_['spi_total_size']-1,sizeMax:@chip_settings_['spi_total_size'])
 
 close_file
 
-puts "[+] HARDSPLOIT SPI export completed successfully"
+puts "\n[+] HARDSPLOIT SPI export completed successfully"
 puts "[+] " + $endTime_ 
 puts "[+] File saved in : " + $filepath 
 
@@ -135,7 +136,7 @@ rescue HardsploitAPI::ERROR::HARDSPLOIT_NOT_FOUND
    close_file
    exit(false)
 rescue HardsploitAPI::ERROR::USB_ERROR
-   puts "[-] USB ERRROR\t\t\t"
+   puts "[-] USB ERRROR              "
    close_file
    exit(false)
 end
