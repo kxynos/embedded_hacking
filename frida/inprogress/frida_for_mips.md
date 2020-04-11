@@ -51,14 +51,22 @@ openssl/Configure:        $value = '-mips1' if ($target =~ /mips32/);
 ```
 
 ```
-$ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips
+$ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips FRIDA_LIBC=gnu
 
 Success! Here's your SDK: build/sdk-linux-mips.tar.bz2
 
 ```
 
-Next attampt to make frida-gum:
-```
+Next attampt to make frida-gum (fails):
+```bash
 $ make -f Makefile.linux.mk gum-linux-mips FRIDA_LIBC=gnu
+...
+/home/vagrant/frida12/frida/build/tmp_thin-linux-mips/frida-gum/../../../frida-gum/ext/tinycc/tccasm.c:1217: undefined reference to `asm_gen_code'
+/home/vagrant/frida12/frida/build/tmp_thin-linux-mips/frida-gum/../../../frida-gum/ext/tinycc/tccasm.c:1234: undefined reference to `asm_gen_code'
+/home/vagrant/frida12/frida/build/tmp_thin-linux-mips/frida-gum/../../../frida-gum/ext/tinycc/tccasm.c:1234: undefined reference to `asm_gen_code'
+collect2: error: ld returned 1 exit status
+ninja: build stopped: subcommand failed.
+Makefile.linux.mk:146: recipe for target 'build/frida_thin-linux-mips/lib/pkgconfig/frida-gum-1.0.pc' failed
+make: *** [build/frida_thin-linux-mips/lib/pkgconfig/frida-gum-1.0.pc] Error 1
 ```
 
