@@ -3,7 +3,7 @@
 
 I used Vagrant up for a quick cross-compile VM. 
 Edit: Vagrantfile
-```
+```ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 Vagrant.configure("2") do |config|
@@ -18,16 +18,13 @@ end
 ```
 Setup environment :
 
-```
+```bash
 sudo apt install g++-mips-linux-gnu gcc-mips-linux-gnu flex bison python3-pip 
 git clone --recursive https://github.com/frida/frida
-
-export TARGET=mips-linux-gnu
-
 ```
 
 Edit *releng/setup-env.sh* to find *host_toolprefix* with the cross-tool prefix :
-```
+```bash
 $ vi releng/setup-env.sh
 ...
       mips)
@@ -43,14 +40,14 @@ Edit "openssl/Configure"
 (the file exists after it crashes on an error)
 
 Edit "build/fs-tmp-linux-mips/openssl/Configure" at line 1233:     
-```
+```bash
 openssl/Configure:        $value = '-mips2' if ($target =~ /mips32/);
 ```
-```
+```bash
 openssl/Configure:        $value = '-mips1' if ($target =~ /mips32/);
 ```
 
-```
+```bash
 $ make -f Makefile.sdk.mk FRIDA_HOST=linux-mips FRIDA_LIBC=gnu
 
 Success! Here's your SDK: build/sdk-linux-mips.tar.bz2
