@@ -22,13 +22,6 @@ Setup environment :
 sudo apt install g++-mips-linux-gnu gcc-mips-linux-gnu flex bison python3-pip 
 git clone --recursive https://github.com/frida/frida
 
-cd frida
-wget https://github.com/mesonbuild/meson/releases/download/0.51.0/meson-0.51.0.tar.gz
-tar zxf meson-0.51.0.tar.gz
-mv meson-0.51.0 releng/meson
-
-wget https://github.com/mesonbuild/meson/releases/download/0.51.0/meson-0.51.0.tar.gz; tar zxf meson-0.51.0.tar.gz; mv meson-0.51.0 releng/meson
-
 export TARGET=mips-linux-gnu
 
 ```
@@ -39,38 +32,15 @@ $ vi releng/setup-env.sh
 ...
       mips)
         host_arch_flags="-march=mips1 -mfp32"
-        host_toolprefix="$TARGET-"
+
 ...   
 
 ```
 
-Edit *releng/config.site.in* to find *host_alias* with the cross-tool prefix :
-```
-$ vi releng/config.site.in 
-...
-  linux-mips)
-    host_alias="$TARGET"
-    cross_compiling=yes
-    ;;
-...
-```
-
-Edit: *"xz/configure"*:
-```
-line: 6115
-if test x$ac_cv_prog_cc_c99 = xno ; then
-        as_fn_error $? "No C99 compiler was found." "$LINENO" 5
-fi
-
-if test x$ac_cv_prog_cc_c99 = xyes ; then
-        as_fn_error $? "No C99 compiler was found." "$LINENO" 5
-fi
-```
+If it complains about openssl issues try this:
 Edit "openssl/Configure" 
 
-or     
-
-(if the file doesn't exist wait for it to crash)
+(the file exists after it crashes on an error)
 
 Edit "build/fs-tmp-linux-mips/openssl/Configure" at line 1233:     
 ```
@@ -89,6 +59,6 @@ Success! Here's your SDK: build/sdk-linux-mips.tar.bz2
 
 Next attampt to make frida-gum:
 ```
-$ make -f Makefile.linux.mk gum-linux-mips 
+$ make -f Makefile.linux.mk gum-linux-mips FRIDA_LIBC=gnu
 ```
 
