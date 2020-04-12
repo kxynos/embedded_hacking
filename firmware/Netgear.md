@@ -2,6 +2,10 @@
 
 ## System Extraction
 
+```bash
+$  wget http://www.downloads.netgear.com/files/GDC/R6220/R6220-V1.1.0.86.zip
+```
+
 * Extract the system once:
 ```bash
 $ binwalk -e R6220.img 
