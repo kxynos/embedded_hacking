@@ -25,7 +25,11 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 
 Extract manually the squashfs system. 
 ```bash
-dd if=R6220.bin of=sqausss.bin skip=6291456 count=29360128 iflag=skip_bytes,count_bytes
+$ dd if=R6220.bin of=netgear-squashfs.bin skip=6291456 count=29360128 iflag=skip_bytes,count_bytes
+57344+0 records in
+57344+0 records out
+29360128 bytes (29 MB, 28 MiB) copied, 3.69742 s, 7.9 MB/s
+$ unsquashfs netgear-squashfs.bin
 Parallel unsquashfs: Using 2 processors
 1870 inodes (2376 blocks) to write
 create_inode: could not create character device squashfs-root/usr/dev/urandom, because you're not superuser!
