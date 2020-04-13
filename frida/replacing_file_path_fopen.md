@@ -61,7 +61,7 @@ var newPath = Memory.allocUtf8String("sometext2.txt");
 pathPtr = ptr(newPath);
 ```
 
-There is a check to see if the extention is .txt so we don't replace all the files that use fopen when we execute our program and frida scripts. 
+There is a check to see if the extension is .txt so we don't replace all the files that use fopen when we execute our program and frida scripts. 
 
 ```python
 from __future__ import print_function
