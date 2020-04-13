@@ -8,7 +8,7 @@ $  wget http://www.downloads.netgear.com/files/GDC/R6220/R6220-V1.1.0.86.zip
 
 * Extract the system once:
 ```bash
-$ binwalk -e R6220.img 
+$ binwalk -e R6220-V1.1.0.86.img  
 ```
 
 * Binwalk again to find squashfs system:
@@ -50,4 +50,17 @@ created 0 fifos
 
 ## System Emulation
 
+
+## Issue(s) (with solution(s))
+
 ```bash
+If keystone fails with this error :
+  File "/usr/local/lib/python3.7/dist-packages/keystone/keystone.py", line 75, in <module>
+    raise ImportError("ERROR: fail to load the dynamic library.")
+ImportError: ERROR: fail to load the dynamic library.
+```
+Example solution:
+  
+```bash
+sudo cp -R /usr/local/lib/python3.7/dist-packages/usr/lib/python3/dist-packages/keystone/libkeystone.so /usr/local/lib/python3.7/dist-packages/keystone/
+```
