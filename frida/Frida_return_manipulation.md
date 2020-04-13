@@ -70,7 +70,7 @@ frida -f testapp
 Spawned `testapp`. Use %resume to let the main thread start executing!  
 [Local::testapp]->                                                                        
 ```
-Now to get the Base address for the application. We need this to calculate the actual address of the function *testFunc2*. With ASLR enbaled it will be different everytime the application runs. So we have to calculate it everytime. This is done with add().  
+Now to get the Base address for the application. We need this to calculate the actual address of the function *testFunc2*. With ASLR enabled it will be different every time the application runs. So we have to calculate it every time. This is done with add().  
 
 ```js
 [Local::testapp]-> Module.findBaseAddress('testapp')                                                                           
@@ -104,7 +104,7 @@ session.detach()
 ```
 Note: if you don't *detach*, you won't see the messages. 
 
-The next thing we want to do is intercept the function and return a different value. *Interceptor.attach(func2, {* allows us to use interceptor to attach to the specified funciton. The *onLeave* has **retval** that we can then manipulate with *.replace()*. So we can now simply replace it with 0.
+The next thing we want to do is intercept the function and return a different value. *Interceptor.attach(func2, {* allows us to use interceptor to attach to the specified function. The *onLeave* has **retval** that we can then manipulate with *.replace()*. So we can now simply replace it with 0.
 
 ```python
 from __future__ import print_function
@@ -134,7 +134,7 @@ frida.resume(pid)
 session.detach()
 ```
 
-Run it and you should get something silimar this:
+Run it and you should get something similar to this:
 ```bash
 $ python3 testapp.py 
 [*] testFunc2 at : 0x55f2499971a0
@@ -146,4 +146,4 @@ Returned value is : 0
 [*] New return value: 0x0
 ```
 
-Well done, you mananged to alter the outcome of a Linux binary. 
+Well done, you managed to alter the outcome of a Linux binary. 
