@@ -7,6 +7,8 @@
 
 
 #### Completed using 
+FRIDA [https://frida.re/](https://frida.re/)
+
 ```
 $ frida --version
 12.8.20
