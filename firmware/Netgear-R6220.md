@@ -62,23 +62,23 @@ Will give Qiling Framework ([on github](https://github.com/qilingframework/qilin
 After extracting the firmware, change into the root account and enter the squashfs-root folder.
 ```bash
 $ sudo su
-# cd squashfs-root
+$ cd squashfs-root
 ```
 Manually correct links and folders (firmadyn): 
 ```bash
-# rm var
-# mkdir var
-# mkdir var/run
-# rm etc
-# rm etc_ro
-# ln -s usr/etc ./etc
-# ln -s usr/etc_ro/ ./etc_ro
-# rm www
-# mv www.eng www
-# rm mnt
-# rm root
-# mkdir mnt
-# mkdir root
+$ rm var
+$ mkdir var
+$ mkdir var/run
+$ rm etc
+$ rm etc_ro
+$ ln -s usr/etc ./etc
+$ ln -s usr/etc_ro/ ./etc_ro
+$ rm www
+$ mv www.eng www
+$ rm mnt
+$ rm root
+$ mkdir mnt
+$ mkdir root
 ```
 
 Setup the python script to start things. This is a slightly modified example provided by Qlinig Framework.
