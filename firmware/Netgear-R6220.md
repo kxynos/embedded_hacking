@@ -143,8 +143,8 @@ if __name__ == "__main__":
 
 Execute the script. You will get lots of output to the screen since *log_console* is set to *True*. 
 ```bash
-# python netgear_6220_mips32el_linux_modified.py 
-# netstat -na | more
+$ python3 netgear_6220_mips32el_linux_modified.py 
+$ netstat -na | more
 Proto Recv-Q Send-Q Local Address           Foreign Address         State      
 tcp        0      0 127.0.0.1:8080          0.0.0.0:*               LISTEN
 ```
@@ -167,7 +167,7 @@ Cache-Control: max-age=0
 ```
 Give it a run:
 ```bash
-# cat http.txt | nc -v 127.0.0.1 8080
+$ cat http.txt | nc -v 127.0.0.1 8080
 localhost [127.0.0.1] 8080 (http-alt) open
 HTTP/1.1 503 No Shares Available
 Server: 
@@ -186,6 +186,12 @@ Connection: close
 </BODY>
 </HTML>
 ```
+
+Don't forget to kill the process once you have finished: 
+```bash
+$ killall python3 
+```
+
 It is running now what:
 * Where to next ? Figure out why it is not correctly loading the files from **www**. 
 * Check the calls made earlier and try to intercept them using Qiling Framework. 
