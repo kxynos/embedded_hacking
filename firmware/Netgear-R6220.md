@@ -1,7 +1,7 @@
 # NETGEAR firmware hackery 
 
 ## System Extraction (manual)
-Linux system used Kali 2019:
+Linux system used Kali 2018.4:
 ```bash
 # uname -a
 Linux kali 4.18.0-kali2-amd64 #1 SMP Debian 4.18.10-2kali1 (2018-10-09) x86_64 GNU/Linux
@@ -30,6 +30,7 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 2097216       0x200040        LZMA compressed data, properties: 0x5D, dictionary size: 33554432 bytes, uncompressed size: 7605184 bytes
 6291456       0x600000        Squashfs filesystem, little endian, version 4.0, compression:xz, size: 22643368 bytes, 1995 inodes, blocksize: 131072 bytes, created: 2019-01-07 02:56:51
 35651584      0x2200000       Sercomm firmware signature, version control: 256, download control: 0, hardware ID: "AYA", hardware version: 0x4100, firmware version: 0x86, starting code segment: 0x0, code size: 0x7300
+...(cut down)
 ```
 
 Extract manually the squashfs system. 
@@ -44,7 +45,7 @@ Parallel unsquashfs: Using 2 processors
 1870 inodes (2376 blocks) to write
 create_inode: could not create character device squashfs-root/usr/dev/urandom, because you're not superuser!
 
-...
+...(cut down)
 [================================================================================================================\      ] 2269/2376  95%
 
 created 1485 files
@@ -63,7 +64,7 @@ After extracting the firmware, change into the root account and enter the squash
 $ sudo su
 # cd squashfs-root
 ```
-Manually correct links
+Manually correct links and folders (firmadyn): 
 ```bash
 # rm var
 # mkdir var
@@ -185,6 +186,10 @@ Connection: close
 </BODY>
 </HTML>
 ```
+It is running now what:
+* Where to next ? Figure out why it is not correctly loading the files from **www**. 
+* Check the calls made earlier and try to intercept them using Qiling Framework. 
+* If you can intercept calls, modify them. 
 
 ## Issue(s) (with solution(s))
 
