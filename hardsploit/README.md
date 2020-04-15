@@ -5,6 +5,13 @@ File: [export_spi.rb](https://github.com/kxynos/embedded_hacking/blob/master/har
 
 [Hardsploit Github page](https://github.com/serma-safety-security)
 #### Setup 
+
+Install some libraries:
+
+```bash
+apt-get install ruby ruby-dev cmake build-essential dfu-util libusb-1.0-0 bison openssl libreadline5 libreadline-dev curl git-core zlib1g zlib1g-dev libssl-dev vim libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev git-core subversion autoconf xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+```
+
 Download the files (*50-hardsploit.rules* and *export_spi.rb*) from the hardsploit folder.
 
 * Copy the file *export_spi.rb* into the folder *hardsploit-api/Examples* in your *hardsploit-gui* setup or checkout just the api library *hardsploit-api*.
