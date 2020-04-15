@@ -40,7 +40,7 @@ sudo udevadm control --reload-rules
     }
 ```
 
-#### Executing 
+#### Executing Export SPI module (ruby)
 Examples of how to execute the export SPI command : 
 ```bash
 $ ruby export_spi.rb
