@@ -12,6 +12,10 @@ Install some libraries:
 apt-get install ruby ruby-dev cmake build-essential dfu-util libusb-1.0-0 bison openssl libreadline5 libreadline-dev curl git-core zlib1g zlib1g-dev libssl-dev vim libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev git-core subversion autoconf xorg-dev libgl1-mesa-dev libglu1-mesa-dev
 ```
 
+```ruby
+gem install activerecord libusb sqlite3
+```
+
 Download the files (*50-hardsploit.rules* and *export_spi.rb*) from the hardsploit folder. 
 
 Or copy this line:
