@@ -5,3 +5,5 @@ Topics:
 - Hardsploit command line program (ruby)
 - QEMU 
 - Device Driver example
+- Firmware 
+	- Netgear
