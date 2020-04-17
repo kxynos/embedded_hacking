@@ -1,5 +1,5 @@
 # Repo about FPGA stuff
 
-My PFGA playground.
+My FPGA playground.
 
 I have a tinyfpga BX. So examples will be setup for it. 
