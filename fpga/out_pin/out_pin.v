@@ -1,6 +1,7 @@
 // FPGA
 // Coded by Konstantinos Xynos (2020)
 // MIT License 
+// Based on the blink led demo provided with Tinyfpga 
 //
 // look in pins.pcf for all the pin names on the TinyFPGA BX board
 module out_pin (
