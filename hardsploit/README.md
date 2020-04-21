@@ -1,5 +1,7 @@
 ## Hardsploit command line tool
 
+Details of how to install ruby support for libusb : [installation-macOS-cmd.md](https://github.com/kxynos/embedded_hacking/blob/master/hardsploit/installation-macOS-cmd.md)
+
 ### Export SPI command line version (Qt library not needed)
 File: [export_spi.rb](https://github.com/kxynos/embedded_hacking/blob/master/hardsploit/export_spi.rb)
 
