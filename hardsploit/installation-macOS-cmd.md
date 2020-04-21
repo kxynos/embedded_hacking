@@ -9,7 +9,7 @@ brew install libusb
 brew install ruby@2.6
 ```
 
-Once the installation is complete you will need the following lines. Keep these in a note someone for future use. You will needs these later and when ever you are running **Hardsploit**. They are needed for libusb support. 
+Once the installation is complete you will need the following lines. Keep these in a note someone for future use. You will needs these later and whenever you are running **Hardsploit**. They are needed for libusb support. 
 
 ```bash
 export PATH="/usr/local/opt/ruby@2.6/bin:$PATH"
