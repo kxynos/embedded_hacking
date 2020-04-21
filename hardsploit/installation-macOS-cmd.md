@@ -2,9 +2,10 @@
 
 Install and update homebrew for macOS. 
 
-Install Ruby. In this example I am showing you how to pick a version. 
+Install Ruby. In this example I am showing you how to pick a version. (remove @2.6 if you want the latest version)
 
 ```bash
+brew install libusb
 brew install ruby@2.6
 ```
 
@@ -19,7 +20,7 @@ export PKG_CONFIG_PATH="/usr/local/opt/ruby@2.6/lib/pkgconfig"
 ruby --version
 ```
 
-Download libusb support for Ruby, build and install support. 
+Download libusb support for Ruby ([https://github.com/larskanis/libusb](https://github.com/larskanis/libusb)), build and install support. 
 
 ```
 git clone https://github.com/larskanis/libusb
