@@ -2,7 +2,7 @@
 
 My FPGA playground.
 
-I have a TinyFPGA BX to run experiments on. 
+I have a TinyFPGA BX ([https://tinyfpga.com/bx/guide.html](https://tinyfpga.com/bx/guide.html)/ [https://www.crowdsupply.com/tinyfpga/tinyfpga-bx](https://www.crowdsupply.com/tinyfpga/tinyfpga-bx)) to run experiments on. 
 
 So the examples I will provide will be tweaked for it. 
 
