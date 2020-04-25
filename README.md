@@ -7,3 +7,4 @@ Topics:
 - Device Driver example
 - Firmware 
 	- Netgear
+- FPGA examples using TinyFPGA BX (learning the basics and making code work on the TinyFPGA BX)
