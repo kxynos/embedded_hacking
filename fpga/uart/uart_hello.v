@@ -39,9 +39,9 @@ module transmit_hello(input wire  CLK,
   wire       is_transmitting;
   wire       recv_error;
 
-// added a shift 16 to correctly calculate the baud rate for TinyFPGA BX
+// need to figure out how to correctly calculate baudrate for TinyFPGA BX
 
-  uart #(.baud_rate(9600<<16), .sys_clk_freq(12000000))
+  uart #(.baud_rate(9600), .sys_clk_freq(12000000))
   uart0(.clk(CLK),                    // The master clock for this module
         .rst(reset),                      // Synchronous reset
         .rx(PIN_1),                // Incoming serial line
