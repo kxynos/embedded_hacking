@@ -11,24 +11,24 @@ module transmit_hello(input wire  CLK,
                       output wire PIN_2); //TX
 
 
-`define GREETING_SIZE 12
+`define GREETING_SIZE 10
 `define RX_SIZE 3
 
   reg [7:0] rx_dat[0:7];
 
-  wire [7:0] greeting[0:11];
-  assign greeting[0]  = "H";
-  assign greeting[1]  = "e";
-  assign greeting[2]  = "l";
+  wire [7:0] greeting[0:9];
+  
+  assign greeting[0]  = "\n";
+  assign greeting[1]  = "W";
+  assign greeting[2]  = "e";
   assign greeting[3]  = "l";
-  assign greeting[4]  = "o";
-  assign greeting[5]  = " ";
-  assign greeting[6]  = "W";
-  assign greeting[7]  = "o";
-  assign greeting[8]  = "r";
-  assign greeting[9]  = "l";
-  assign greeting[10] = "d";
-  assign greeting[11] = "!";
+  assign greeting[4]  = "c";
+  assign greeting[5]  = "o";
+  assign greeting[6]  = "m";
+  assign greeting[7]  = "e";
+  assign greeting[8]  = ":";
+  assign greeting[9]  = "\n";
+  
   reg [3:0]  idx;
   reg [3:0]  idx2;
 
@@ -61,6 +61,22 @@ module transmit_hello(input wire  CLK,
 
   always @(posedge CLK) begin
   
+   if (!is_transmitting && !transmitted && command && !received) begin
+      transmit = 1;
+      tx_byte = greeting[idx];
+      if (idx == `GREETING_SIZE - 1) begin
+        idx <= 0;
+        command = 0;
+      end else begin
+        idx <= idx + 1;
+      end
+      transmitted = 1;
+    end else begin
+      transmitted = 0;
+      transmit = 0;
+    end
+
+
     if (received) begin
       rx_dat[idx2] <= rx_byte ;
       
