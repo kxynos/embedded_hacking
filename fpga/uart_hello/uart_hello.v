@@ -39,10 +39,8 @@ module transmit_hello(input wire  CLK,
   wire       is_transmitting;
   wire       recv_error;
 
-// Calculate baudrate for TinyFPGA BX
-// The following, uart #(.baud_rate(9600), .sys_clk_freq(12000000)) will produce a baud rate of 12820, when checked with a logical analyzer
-// A baud rate of 43202 here will produce the desired baud rate of 56700 // check README.md for calculation details.
-  uart #(.baud_rate(43202), .sys_clk_freq(12000000))
+// TinyFPGA BX uses a 16MHz clock
+  uart #(.baud_rate(57600), .sys_clk_freq(16000000))
   uart0(.clk(CLK),                    // The master clock for this module
         .rst(reset),                      // Synchronous reset
         .rx(PIN_1),                // Incoming serial line
@@ -70,5 +68,5 @@ module transmit_hello(input wire  CLK,
       transmitted = 0;
       transmit = 0;
     end
-  end // always @ (posedge iCE_CLK)
+  end // always @ (posedge CLK)
 endmodule // transmit_hello
