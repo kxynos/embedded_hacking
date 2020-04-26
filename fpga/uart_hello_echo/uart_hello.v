@@ -71,21 +71,16 @@ module transmit_hello(input wire  CLK,
         idx <= idx + 1;
       end
       transmitted = 1;
-      // command = 0;
     end else begin
       transmitted = 0;
       transmit = 0;
-     // command = 0;
     end
 
     if (received) begin
-     // command=1;
       rx_dat[idx2] <= rx_byte ;
       greeting[0] = rx_dat[idx2] ;
-      //$display("%b",rx_byte);
       if (idx2 == `RX_SIZE - 1) begin
-      //  $display("%s",rx_dat);
-        idx2 <= 0;
+         idx2 <= 0;
          command=1;
       end else begin
         idx2 <= idx2 + 1;
