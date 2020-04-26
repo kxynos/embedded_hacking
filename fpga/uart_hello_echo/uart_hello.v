@@ -78,7 +78,7 @@ module transmit_hello(input wire  CLK,
 
     if (received) begin
       rx_dat[idx2] <= rx_byte ;
-      greeting[0] = rx_dat[idx2] ;
+     // greeting[0] = rx_dat[idx2] ;
       if (idx2 == `RX_SIZE - 1) begin
          idx2 <= 0;
          command=1;
