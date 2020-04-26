@@ -61,30 +61,21 @@ module transmit_hello(input wire  CLK,
 
   always @(posedge CLK) begin
   
-    if (!is_transmitting && !transmitted && command) begin
-      transmit = 1;
-      tx_byte = greeting[idx];
-      if (idx == `GREETING_SIZE - 1) begin
-        idx <= 0;
-        command = 0;
-      end else begin
-        idx <= idx + 1;
-      end
-      transmitted = 1;
-    end else begin
-      transmitted = 0;
-      transmit = 0;
-    end
-
     if (received) begin
       rx_dat[idx2] <= rx_byte ;
-     // greeting[0] = rx_dat[idx2] ;
+      
       if (idx2 == `RX_SIZE - 1) begin
          idx2 <= 0;
-         command=1;
+
       end else begin
         idx2 <= idx2 + 1;
       end
+      if (!is_transmitting) begin
+        transmit = 1;
+        tx_byte = rx_byte;
+        
+      end
+
     end 
     
   end // always @ (posedge iCE_CLK)
