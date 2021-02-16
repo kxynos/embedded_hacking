@@ -12,8 +12,8 @@
 # SPI I/O Pins on Hardsploit
 # Assuming they are on default layout
 #
-# Pin A0 : Cable Select (CS)
-# Pin A1 : Clock (CLK)
+# Pin A0 : Clock (CLK)
+# Pin A1 : Cable Select (CS)
 # Pin A2 : MOSI (SI)
 # Pin A3 : MISO (SO)
 #
@@ -220,7 +220,7 @@ when "7p4"
   crossvalue[7] = 1
   HardsploitAPI.instance.setWiringLeds(value:0x00000000000000F0) # highlight the ones we picked
 when "default"
-  puts "[!] Default pin layout CS: A0, CLK: A1, MOSI: A2, MISO: A3"
+  puts "[!] Default pin layout CLK: A0, CS: A1, MOSI: A2, MISO: A3"
 end
 
 
