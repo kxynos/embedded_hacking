@@ -167,6 +167,7 @@ for i in 0..63
   crossvalue.push i
 end
 
+puts "[!] Warning : Some configurations won't work since line interference casues issues. Keep that in mind."
 case @options[:pins]
 when "0p3"
   puts "[!] Custom pins based on Saleae logic cable (0 to 3)"
