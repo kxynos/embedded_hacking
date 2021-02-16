@@ -109,11 +109,32 @@ begin
   OptionParser.new do |opts|
     opts.banner =  "usage: #{$0} [options]"
 
-    opts.on("-p [PINS]", "--pins [PINS]",["0p3","4p7","3p0","7p4","default"], "Pick which pins to use. [0p3, 4p7, 3p0, 7p4, default]") do |pins_|
+    opts.on("-p [PINS]", "--pins [PINS]",["0p3","4p7","3p0","default"], "Pick which pins to use. [0p3, 4p7, 3p0, default]") do |pins_|
       @options[:pins] = pins_
       puts pins_.nil?
       if pins_.nil? then
-        puts "[-] PINS needs a correct argument."
+        puts "[-] PINS needs a correct argument. Pick one: [0p3, 4p7, 3p0, default]"
+	
+        puts "[!] Default pin layout" 
+        puts "\tCLK: A0, CS: A1, MOSI(SI): A2, MISO(SO): A3"
+	     
+        puts "[!] 0p3 pin layout" 
+        puts "\t[!] Custom pins based on Saleae logic cable (0 to 3)"
+        puts "\t    Key: Function: Hardsploit pin - Saleae Pro Pin"
+        puts "\t\tCLK: A0 - pin 0 | CS: A1 - pin 1"
+        puts "\t\tSI: A2 - pin 2 | SO: A3 - pin 3" 
+	      
+        puts "[!] 3p0 pin layout"
+        puts "\t[!] Custom pins based on Saleae logic cable (3 to 0)"
+        puts "\t    Key: Function: Hardsploit pin - Saleae Pro Pin"
+        puts "\t\tSO: A3 - pin 0 | SI: A2 - pin 1"
+        puts "\t\tCS: A1 - pin 2 | CLK: A0 - pin 3"
+	      
+        puts "[!] 4p7 pin layout"
+        puts "\t[!] Custom pins based on Saleae logic cable (4 to 7)"
+        puts "\t\tKey: Function: Hardsploit pin - Saleae Pro Pin"
+        puts "\t\tCLK: A4 - pin 4 | CS: A5 - pin 5"
+        puts "\t\tSI: A6 - pin 6 | SO: A7 - pin 7" 
         exit(false)
       end
     end
@@ -182,17 +203,17 @@ when "0p3"
 when "4p7"
   puts "[!] Custom pins based on Saleae logic cable (4 to 7)"
   puts "\tKey: Function: Hardsploit pin - Saleae Pro Pin"
-  puts "\tCS: A4 - pin 4 | SO: A5 - pin 5"
-  puts "\tSI: A6 - pin 6 | CLK: A7 - pin 7" 
+  puts "\tCLK: A4 - pin 4 | CS: A5 - pin 5"
+  puts "\tSI: A6 - pin 6 | SO: A7 - pin 7" 
   crossvalue[0] = 4
   crossvalue[1] = 5
   crossvalue[2] = 6
   crossvalue[3] = 7
 
-  crossvalue[4] = 1
-  crossvalue[5] = 3
+  crossvalue[4] = 0
+  crossvalue[5] = 1
   crossvalue[6] = 2
-  crossvalue[7] = 0
+  crossvalue[7] = 3
   HardsploitAPI.instance.setWiringLeds(value:0x00000000000000F0) # highlight the ones we picked
 when "3p0"
   puts "[!] Custom pins based on Saleae logic cable (3 to 0)"
@@ -205,23 +226,8 @@ when "3p0"
   crossvalue[3] = 0
 
   HardsploitAPI.instance.setWiringLeds(value:0x000000000000000F) # highlight the ones we picked
-when "7p4"
-  puts "[!] Custom pins based on Saleae logic cable (7 to 4)"
-  puts "\tKey: Function: Hardsploit pin - Saleae Pro Pin"
-  puts "\tCS: A7 - pin 4 | SO: A6 - pin 5"
-  puts "\tSI: A5 - pin 6 | CLK: A4 - pin 7" 
-  crossvalue[0] = 4
-  crossvalue[1] = 5
-  crossvalue[2] = 6
-  crossvalue[3] = 7
-
-  crossvalue[4] = 0
-  crossvalue[5] = 2
-  crossvalue[6] = 3
-  crossvalue[7] = 1
-  HardsploitAPI.instance.setWiringLeds(value:0x00000000000000F0) # highlight the ones we picked
 when "default"
-  puts "[!] Default pin layout CLK: A0, CS: A1, MOSI: A2, MISO: A3"
+  puts "[!] Default pin layout CLK: A0, CS: A1, MOSI(SI): A2, MISO(SO): A3"
 end
 
 
