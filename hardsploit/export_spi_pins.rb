@@ -197,12 +197,13 @@ when "4p7"
 when "3p0"
   puts "[!] Custom pins based on Saleae logic cable (3 to 0)"
   puts "    Key: Function: Hardsploit pin - Saleae Pro Pin"
-  puts "\tCS: A3 - pin 0 | SO: A2 - pin 1"
-  puts "\tSI: A1 - pin 2 | CLK: A0 - pin 3"
-  crossvalue[0] = 0
+  puts "\tSO: A3 - pin 0 | SI: A2 - pin 1"
+  puts "\tCS: A1 - pin 2 | CLK: A0 - pin 3"
+  crossvalue[0] = 3
   crossvalue[1] = 2
-  crossvalue[2] = 3
-  crossvalue[3] = 1
+  crossvalue[2] = 1
+  crossvalue[3] = 0
+
   HardsploitAPI.instance.setWiringLeds(value:0x000000000000000F) # highlight the ones we picked
 when "7p4"
   puts "[!] Custom pins based on Saleae logic cable (7 to 4)"
