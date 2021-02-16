@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 #===================================================
-#  Coded by Konstantinos Xynos (2020)
+#  Coded by Konstantinos Xynos (2020-2021)
 #  Version: 1.0
 #  Based on Hardsploit API - By Opale Security
 #  www.opale-security.com || www.hardsploit.io
