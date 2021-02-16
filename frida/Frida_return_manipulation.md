@@ -120,7 +120,7 @@ console.log("[*] testFunc2 at : " + testFunc2_loc);
 
 Interceptor.attach(testFunc2_loc, {
     onEnter: function(args) {
-      console.log("[*] retn: " + retval);
+      //console.log("[*] args: " +  args[0].toInt32());
     },
     onLeave: function(retval){
       console.log("[*] Previous return value: " + retval);
