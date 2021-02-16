@@ -172,12 +172,12 @@ case @options[:pins]
 when "0p3"
   puts "[!] Custom pins based on Saleae logic cable (0 to 3)"
   puts "    Key: Function: Hardsploit pin - Saleae Pro Pin"
-  puts "\tCS: A0 - pin 0 | SO: A1 - pin 1"
-  puts "\tSI: A2 - pin 2 | CLK: A3 - pin 3" 
-  crossvalue[0] = 1
-  crossvalue[1] = 3
+  puts "\tCLK: A0 - pin 0 | CS: A1 - pin 1"
+  puts "\tSI: A2 - pin 2 | SO: A3 - pin 3" 
+  crossvalue[0] = 0
+  crossvalue[1] = 1
   crossvalue[2] = 2
-  crossvalue[3] = 0
+  crossvalue[3] = 3
   HardsploitAPI.instance.setWiringLeds(value:0x000000000000000F) # highlight the ones we picked
 when "4p7"
   puts "[!] Custom pins based on Saleae logic cable (4 to 7)"
