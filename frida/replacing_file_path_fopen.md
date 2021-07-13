@@ -115,4 +115,9 @@ Got fd: 0x7ffff0003300
 ```
 
 
+####Commands tested using 
 
+```
+$ frida --version
+12.8.20
+```

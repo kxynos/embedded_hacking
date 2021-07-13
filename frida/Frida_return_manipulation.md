@@ -147,3 +147,11 @@ Returned value is : 0
 ```
 
 Well done, you managed to alter the outcome of a Linux binary. 
+
+
+####Commands tested using 
+
+```
+$ frida --version
+12.8.20
+```
