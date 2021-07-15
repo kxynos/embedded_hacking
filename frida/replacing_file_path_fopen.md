@@ -53,7 +53,9 @@ Value of n=1
 
 **Aim** : load and print the contents from a file that you control. 
 
-After many hours I found that the best way to go about completing this is by replacing the function and then replacing the argument with a new one. I tried to assign a new value to args[0] but this was not possible due to a access violation. 
+I found that the one way to go about completing this is by replacing the function and then replacing the argument with a new one. This is what is shown here. 
+
+It is also possible to assign a new value to args[0] but you have to be careful and avoid access violations. Check the other write up on how it is done ([replacing_file_path_fopen_args.md](https://github.com/kxynos/embedded_hacking/blob/master/frida/replacing_file_path_fopen_args.md)). 
 
 Therefore, a new path has to be stored in memory. This is accomplished as follows:
 ```js
