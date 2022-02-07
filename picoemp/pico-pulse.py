@@ -55,11 +55,9 @@ pulseOut.low()
 enabled = False
 oldButtonArm = False
 buttonPulse_hit= False
-button_hit_once = False
 
 timeout_start = utime.ticks_ms()
 
-count = 0
 while True:
     # Arm button 'toggles' output on/off
     if buttonArm.value() and oldButtonArm == False:
