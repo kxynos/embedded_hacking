@@ -1,5 +1,6 @@
 # CSPico Minimal MicroPython Driver Program
 # Copyright (C) Colin O'Flynn, 2021
+# mod by K.Xynos, 2022
 # CC-SA 3.0 License
 
 from machine import Pin, PWM, Signal
@@ -18,7 +19,7 @@ def pwm_on():
     # 250V on the HV capacitor. Setting duty cycle higher generally
     # just causes more current flow/waste in the HV transformer.
     hvpwm.freq(2500)
-    hvpwm.duty_u16(1000) #range 0 to 65535, 800 = 1.22% duty cycle
+    hvpwm.duty_u16(800) #range 0 to 65535, 800 = 1.22% duty cycle
 
 
 #hvpwm pin drives the HV transformer
