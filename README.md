@@ -9,3 +9,4 @@ Topics:
 	- Netgear
 - FPGA examples using TinyFPGA BX (learning the basics and making code work on the TinyFPGA BX)
 - picoEMP : micropython script for continues pulses 
+- onekey-sec-unblob - install manually (help)
