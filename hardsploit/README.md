@@ -96,6 +96,72 @@ Date of last modification of the firmware 2019-04-08 15:45:07 +0100
 [+] File saved in : /home/test/hardsploit-gui/hardsploit-api/Examples/hs_spi_export.bin
 ```
 
+#### Executing Export SPI module (ruby) with variable PIN mode
+
+I programmed this PIN mode to allow you to reuse the cables from *Tigard* set. This is an easy way to unplug the cable when needed and reuse the connections with a Salaea, Tigard etc. 
+
+```bash
+$ ruby export_spi_pins.rb --help
+ ** Hardsploit SPI export ** 
+usage: export_spi_pins.rb [options]
+    -p, --pins [PINS]                Pick which pins to use. [0p3, 4p7, 3p0, default]
+    -n, --nofirmware                 Don't automatically load the FPGA firmware (load at least once after powering on or changing functionality)
+    -h, --help                       Show this message
+
+```
+
+* Examples with output :
+```bash
+$ ruby export_spi_pins.rb -p default
+ ** Hardsploit SPI export ** 
+false
+Hardsploit is connected
+[!] Loading SPI firmware loaded to FPGA
+Date of last modification of the firmware 2023-11-01 12:51:29 +0100
+[+] Progress : 100%  Start@ 2023-11-01 13:04:20 +0100  Stop@ 2023-11-01 13:04:21 +0100 
+[+] Number of hardsploit detected :1
+API             : 2.0.0
+Board           : HW:V1.00 SW:V1.0.3
+FPGA            : V1.2.0
+Microcontroller : V1.0.3
+[!] Warning : Some configurations won't work since line interference casues issues. Keep that in mind.
+[!] Default pin layout CLK: A0, CS: A1, MOSI(SI): A2, MISO(SO): A3
+[+] HARDSPLOIT SPI any rewiring complete 
+[+] HARDSPLOIT SPI export started 
+[+] Progress : 100%  Start@ 2023-11-01 13:04:22 +0100  Stop@ 2023-11-01 13:04:44 +0100 
+[+] HARDSPLOIT SPI export completed successfully
+[+] Elasped time 22.0719 sec
+[+] File saved in : /home/[user_name]/embedded_hacking/hardsploit/hardsploit-api/Examples/hs_spi_export.bin
+```
+
+```bash
+$ ruby export_spi_pins.rb -p 0p3
+ ** Hardsploit SPI export ** 
+false
+Hardsploit is connected
+[!] Loading SPI firmware loaded to FPGA
+Date of last modification of the firmware 2023-11-01 12:51:29 +0100
+[+] Progress : 100%  Start@ 2023-11-01 13:12:55 +0100  Stop@ 2023-11-01 13:12:55 +0100 
+[+] Number of hardsploit detected :1
+API             : 2.0.0
+Board           : HW:V1.00 SW:V1.0.3
+FPGA            : V1.2.0
+Microcontroller : V1.0.3
+[!] Warning : Some configurations won't work since line interference casues issues. Keep that in mind.
+[!] Custom pins based on Saleae logic cable (0 to 3)
+    Key: Function: Hardsploit pin - Saleae Pro Pin
+	CLK: A0 - pin 0 | CS: A1 - pin 1
+	SI: A2 - pin 2 | SO: A3 - pin 3
+[+] HARDSPLOIT SPI any rewiring complete 
+[+] HARDSPLOIT SPI export started 
+[+] Progress : 100%  Start@ 2023-11-01 13:12:57 +0100  Stop@ 2023-11-01 13:13:19 +0100 
+[+] HARDSPLOIT SPI export completed successfully
+[+] Elasped time 22.0719 sec
+[+] File saved in : /home/[user_name]/embedded_hacking/hardsploit/hardsploit-api/Examples/hs_spi_export.bin
+```
+
+#### Extras
+
 N.B.: If you are having issues with the USB try [usb_add_remove.md](https://github.com/kxynos/embedded_hacking/blob/master/usb_add_remove.md)
 
 TODO:
