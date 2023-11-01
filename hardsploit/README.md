@@ -3,7 +3,7 @@
 Details of how to install ruby support for libusb : [installation-macOS-cmd.md](https://github.com/kxynos/embedded_hacking/blob/master/hardsploit/installation-macOS-cmd.md)
 
 ### Export SPI command line version (Qt library not needed)
-File: [export_spi.rb](https://github.com/kxynos/embedded_hacking/blob/master/hardsploit/export_spi.rb)
+File: [export_spi.rb](export_spi.rb)
 
 [Hardsploit Github page](https://github.com/serma-safety-security)
 #### Setup 
@@ -98,7 +98,7 @@ Date of last modification of the firmware 2019-04-08 15:45:07 +0100
 
 #### Executing Export SPI module (ruby) with variable PIN mode
 
-I programmed this PIN mode to allow you to reuse the cables from *Tigard* set. This is an easy way to unplug the cable when needed and reuse the connections with a Salaea, Tigard etc. 
+I programmed this PIN mode ([export_spi_pins.rb](export_spi_pins.rb)). This pin configuration enables you to reuse the cables from the *Tigard* set. This is an easy way to unplug the cable when needed and reuse the connections with a Salaea, Tigard etc. 
 
 ```bash
 $ ruby export_spi_pins.rb --help
