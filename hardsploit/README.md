@@ -11,7 +11,7 @@ File: [export_spi.rb](https://github.com/kxynos/embedded_hacking/blob/master/har
 Install some libraries:
 
 ```bash
-apt-get install ruby ruby-dev cmake build-essential dfu-util libusb-1.0-0 bison openssl libreadline5 libreadline-dev curl git-core zlib1g zlib1g-dev libssl-dev vim libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev git-core subversion autoconf xorg-dev libgl1-mesa-dev libglu1-mesa-dev
+sudo apt-get install ruby ruby-dev cmake build-essential dfu-util libusb-1.0-0 bison openssl curl git-core zlib1g zlib1g-dev libssl-dev vim libsqlite3-0 libsqlite3-dev sqlite3 libxml2-dev git-core subversion autoconf xorg-dev libgl1-mesa-dev libglu1-mesa-dev
 ```
 
 ```ruby
