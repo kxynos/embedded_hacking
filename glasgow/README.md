@@ -112,7 +112,9 @@ I: g.applet.interface.spi_controller: port(s) A, B voltage set to 3.3 V
 007f9d46
 ```
 
-And the end result is '007f9d46'. 
+And the end result is '007f9d46'. Manufacture ID2=0x7f, Manufacture ID1 = 0x9d, Device ID2=0x46
+
+If you want Device ID1 try 'ab00000000' and you should get Device ID2=0x15. 
 
 #### B) Applet: memory-25x
 
