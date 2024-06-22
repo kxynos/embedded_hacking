@@ -94,7 +94,7 @@ The example one I am using here is a IS25CQ032 and a datasheet can be found here
 A nice and easy and quick test that we can complete is the JEDEC ID Read (0x9F) (page 15 in datasheet). 
 This will output the Manufacturer ID1, Manufacturer ID2, and Device ID2. 
 The important point here to remeber is that SPI will only return the amount of bytes we send. 
-So we will send the instruction 0x9F which is one byte, and then send 3 bytes of zeros to get back the Manufacturer ID1, Manufacturer ID2, and Device ID2.
+So we will send the instruction 0x9F which is one byte, and then send 3 bytes of zeros (dummy data which is ignored) to get back the Manufacturer ID1, Manufacturer ID2, and Device ID2.
 So the command we will send to the SPI flash device(target/peripheral) will be '9f000000'. 
 
 Chip identification using JEDEC hex command:
@@ -116,9 +116,21 @@ And the end result is '007f9d46'. Manufacture ID2=0x7f, Manufacture ID1 = 0x9d, 
 
 If you want Device ID1 (RDID (0xAB)) try 'ab00000000' and you should get '0000000015' or Device ID2=0x15. 
 
+From datasheet:
+
+| Product Identification | Hex Code |
+| ------------- | ------------- |
+| Manufacture ID1 | 9Dh |
+| Manufacture ID2 | 7Fh |
+| Device ID1 | 15h |
+| Device ID2 | 46h |
+
+
 #### B) Applet: memory-25x
 
-Chip identification using JEDEC:
+You can also avoid doing everything manually and just use the `memory-25x` applet. 
+
+Chip identification using JEDEC via memory-25x identify command:
 
 ```
 glasgow run memory-25x -V 3.3 --pin-sck 0 --pin-cs 1 --pin-copi 2 --pin-cipo 3 identify
