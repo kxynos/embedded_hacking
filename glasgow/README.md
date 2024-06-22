@@ -207,3 +207,10 @@ Result:
 [...]
 ```
 
+### Statistics - SPI flash read speed
+
+#### Using the Glasgow 0.1.dev2053+g3940a01
+
+| Chip | Size | Total Time |
+| ------------- | ------------- | ------------- |
+| IS25CQ032 | 4194304 | real 5m36.483s  |
