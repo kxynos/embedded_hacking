@@ -24,7 +24,13 @@ Pin Mapping:
 |  VCC | VIOA |
 | GND | GND |
 
-Double check you dont have any shorted connections anywhere. Now you can power up your Glasgow. 
+Double check you dont have any shorted connections anywhere. 
+
+Now you can power up your Glasgow. 
+
+P.S.: Usually the target device won't need to be powered up since we are providing just enough power for the SPI Flash chip to operate.
+
+Depending on your requirements, you might not want to power the device using the Glasgow. (I have not tested this yet.) 
 
 Check that Glasgow is connected:
 
@@ -51,7 +57,6 @@ Port	Vio	Vlimit	Vsense	Vsense(range)
 A      0.0	5.5	   0.0	    0.0-5.5	
 B      0.0	5.5	   0.0	    0.0-5.5
 ```
-
 
 Set the voltage maximum limit on Port A (only A):
 
