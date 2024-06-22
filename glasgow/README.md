@@ -97,6 +97,8 @@ The important point here to remeber is that SPI will only return the amount of b
 So we will send the instruction 0x9F which is one byte, and then send 3 bytes of zeros (dummy data which is ignored) to get back the Manufacturer ID1, Manufacturer ID2, and Device ID2.
 So the command we will send to the SPI flash device(target/peripheral) will be '9f000000'. 
 
+Notice, my circuit makes use of 3.3V and therefore I have set it to 3.3v. 
+
 Chip identification using JEDEC hex command:
 
 ```
@@ -126,7 +128,7 @@ From datasheet:
 | Device ID2 | 46h |
 
 
-#### B) Applet: memory-25x
+#### B) Applet: memory-25x - identify
 
 You can also avoid doing everything manually and just use the `memory-25x` applet. 
 
@@ -147,4 +149,61 @@ I: g.applet.memory.25x: JEDEC manufacturer 0x7f (unknown) device 0xXXXXX (16-bit
 I: g.applet.memory.25x: device does not have valid SFDP data: SFDP signature not present
 ```
 
+
+#### C) Applet: memory-25x - read
+
+Geting help about the 'memory-25x' read function:
+
+```
+glasgow run memory-25x read -h
+```
+
+Result:
+
+```
+
+usage: glasgow run memory-25x read [-h] [-f FILENAME] ADDRESS LENGTH
+
+positional arguments:
+  ADDRESS               read memory starting at address ADDRESS, with wraparound
+  LENGTH                read LENGTH bytes from memory
+
+options:
+  -h, --help            show this help message and exit
+  -f FILENAME, --file FILENAME
+                        write memory contents to FILENAME
+```            
+
+Therefore, we need to set the start and end size of the capture (notice you can capture specific areas if you like. Also specify a filename. 
+
+If you are reading a 32M-Bit flash chip use '4194304' bytes and for a 64M-Bit one use '8388608' bytes. 
+
+Reading the chip (not fast mode) via memory-25x read command:
+
+```
+glasgow run memory-25x -V 3.3 --pin-sck 0 --pin-cs 1 --pin-copi 2 --pin-cipo 3 read 0 4194304 -f firmware.bin
+```
+
+Result (identifying a IS25CQ032):
+
+```
+I: g.device.hardware: device already has bitstream ID XXXXXXXXXXX
+I: g.cli: running handler for applet 'memory-25x'
+I: g.applet.memory.25x: port(s) A, B voltage set to 3.3 V
+1114112/4194304 bytes done; reading address 0x110000
+```
+
+Check the contents of firmware.bin file:
+
+Command: 
+
+```
+hexdump -C firmware.bin
+```
+
+Result:
+```
+00000000  48 44 52 30 04 fa 00 00  00 00 00 00 60 00 02 00  |HDR0........`...|
+[...]
+```
 
