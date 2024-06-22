@@ -3,4 +3,4 @@
 ## SPI
 In this section we will look into interacting with a SPI Flahs device using the Glasgow.
 
-* Setup and testing 
+* Setup and testing - [spi-setup.md](spi-setup.md)
