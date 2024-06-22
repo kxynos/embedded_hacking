@@ -3,7 +3,7 @@
 **WARNING: Proceed with caution. At every point I assume you know what you are doing and I can't be held responsible for any damage that you casue to your devices/equipment/lab etc.**
 
 ## In-line SPI (minimum connections for read)
-In this section we will look into interacting with a SPI Flahs device using the Glasgow for dumping/reading the chip that is still in place (in-line).
+In this section we will look into interacting with a SPI Flahs device using the Glasgow RevC [https://glasgow-embedded.org](https://glasgow-embedded.org) or [glasgow embedded github repo](https://github.com/GlasgowEmbedded/glasgow/) for dumping/reading the chip that is still in place (in-line).
 
 In this page, we don't need to remove any flash chips. 
 
