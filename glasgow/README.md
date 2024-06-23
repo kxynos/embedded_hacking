@@ -191,7 +191,7 @@ options:
 
 Therefore, we need to set the start and end size of the capture (notice you can capture specific areas if you like. Also specify a filename. 
 
-If you are reading a 32M-Bit flash chip use '4194304' bytes and for a 64M-Bit one use '8388608' bytes. 
+If you are reading a 32M-Bit flash chip use `4194304` bytes and for a 64M-Bit one use `8388608` bytes. 
 
 Reading the chip (not fast mode) via memory-25x read command:
 
