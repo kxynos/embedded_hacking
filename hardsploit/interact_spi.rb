@@ -99,6 +99,11 @@ else
 end
 
 puts " ** Hardsploit SPI command ** " 
+if options[:cmd_array] == nil then
+  puts "[-] You need to specify a command. Try -h for syntax hints"
+  exit(true)
+end 
+
 puts "[+] Avoid uploading firmware flag set: #{options[:nofirmware]}" if options[:nofirmware] 
 #puts "Input array: [#{options[:cmd_array].join(',')}]" if options[:cmd_array]
 
@@ -137,7 +142,6 @@ HardsploitAPI.callbackProgress = method(:callbackProgress)
 @spi = HardsploitAPI_SPI.new(speed:@speeds[@chip_settings_['spi_speed']],mode:@chip_settings_['spi_mode'])
 
 puts "[+] HARDSPLOIT SPI command started "  
-
 opt_array = options[:cmd_array]
 puts "[+] Sending command: " + opt_array.to_s 
 opt_array = opt_array.map { |hex| hex.to_i(16) }
