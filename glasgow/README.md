@@ -230,4 +230,13 @@ Result:
 | ------------- | ------------- | ------------- |
 | IS25CQ032 | 4194304 | real 5m36.483s  |
 
+### Tips and tricks - SPI flash
+
+* For SPI I would recommend using this layout `--pin-sck 0 --pin-cs 1 --pin-copi 2 --pin-cipo 3`
+
+* Dump chip id and shutdown power in one command: 
+
+```
+glasgow run spi-controller -V 3.3 --pin-sck 0 --pin-cs 1 --pin-copi 2 --pin-cipo 3 '90000000' ; glasgow voltage A 0
+```
 
