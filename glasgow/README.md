@@ -230,6 +230,12 @@ Result:
 | ------------- | ------------- | ------------- |
 | IS25CQ032 | 4194304 | real 5m36.483s  |
 
+#### Using the Hardsploit
+
+| Chip | Size | Total Time |
+| ------------- | ------------- | ------------- |
+| IS25CQ032 | 4194304 | 22 seconds  |
+
 ### Tips and tricks - SPI flash
 
 * For SPI I would recommend using this layout `--pin-sck 0 --pin-cs 1 --pin-copi 2 --pin-cipo 3`
