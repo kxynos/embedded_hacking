@@ -163,6 +163,7 @@ Microcontroller : V1.0.3
 #### Interact with SPI via custom commands
 
 I have implemented the ability to send individual commands to the SPI flash device using the Hardploit. It is also possible to avoid uploading the firmware for even faster interactions. I have added a `-o` flag also to surpress all unwanted output (only the result is outputed as a list).
+
 File: [interact_spi.rb](interact_spi.rb)
 
 ```bash
