@@ -246,3 +246,4 @@ Result:
 glasgow run spi-controller -V 3.3 --pin-sck 0 --pin-cs 1 --pin-copi 2 --pin-cipo 3 '90000000' ; glasgow voltage A 0
 ```
 
+* The harness is compbatible with the Hardsploit (command line scripts `export_spi.rb` and `export_spi_pins.rb` that I provide. You only need to skip one pin at the start. Blue (S) cable should not be connected. 
