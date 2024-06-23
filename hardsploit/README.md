@@ -160,6 +160,72 @@ Microcontroller : V1.0.3
 [+] File saved in : /home/[user_name]/embedded_hacking/hardsploit/hardsploit-api/Examples/hs_spi_export.bin
 ```
 
+#### Interact with SPI via custom commands
+
+I have implemented the ability to send individual commands to the SPI flash device using the Hardploit. It is also possible to avoid uploading the firmware for even faster interactions. I have added a `-o` flag also to surpress all unwanted output (only the result is outputed as a list).
+
+```bash
+$ ruby interact_spi.rb -n -c 9f,0,0,0,0 -o -h
+Usage: interact_spi [options]
+    -n, --nofirmware                 Avoid uploading firmware
+    -c hex_value1,hex_value2,...,    An input array used for command input, use hex values e.g., 9f,0,0,0,0
+        --command
+    -o, --nooutput                   Avoid output status messages, only the output result is printed
+```
+
+Only the result is outputed as a list of hex values
+
+```bash
+$ ruby interact_spi.rb -n -c 9f,0,0,0,0 -o 
+[ff,ff,9d,46,7f]
+```
+
+No firmware is uploaded
+
+```bash
+
+$ ruby interact_spi.rb -n -c 9f,0,0,0,0 
+ ** Hardsploit SPI command ** 
+[+] Avoid uploading firmware flag set: true
+[+] Number of hardsploit detected :1
+Hardsploit is connected
+API             : 2.0.0
+Board           : HW:V1.00 SW:V1.0.3
+FPGA            : V1.2.0
+Microcontroller : V1.0.3
+[+] HARDSPLOIT SPI command started 
+[+] Sending command: ["9f", "0", "0", "0", "0"]
+[+] Sending command(int): [159,0,0,0,0]
+[+] Reply: [ff,ff,9d,46,7f]
+
+[+] HARDSPLOIT SPI command completed successfully
+```
+
+Custom command with firmware upload and very verbose
+
+```bash
+
+$ ruby interact_spi.rb -c 9f,0,0,0,0 
+ ** Hardsploit SPI command ** 
+[+] Number of hardsploit detected :1
+Hardsploit is connected
+API             : 2.0.0
+Board           : HW:V1.00 SW:V1.0.3
+FPGA            : V1.2.0
+Microcontroller : V1.0.3
+[+] Loading SPI firmware onto HARDSPLOIT
+Date of last modification of the firmware 2023-11-01 12:51:29 +0100
+[+] Progress : 100%  Start@ 2024-06-23 20:13:31 +0200  Stop@ 2024-06-23 20:13:32 +0200 
+[+] HARDSPLOIT SPI command started 
+[+] Sending command: ["9f", "0", "0", "0", "0"]
+[+] Sending command(int): [159,0,0,0,0]
+[+] Reply: [ff,ff,9d,46,7f]
+
+[+] HARDSPLOIT SPI command completed successfully
+[+] Elasped time 0.6861 sec
+```
+
+
 #### Extras
 
 N.B.: If you are having issues with the USB try [usb_add_remove.md](https://github.com/kxynos/embedded_hacking/blob/master/usb_add_remove.md)
