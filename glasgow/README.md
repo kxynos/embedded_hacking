@@ -79,6 +79,21 @@ A      0.0	3.3	   0.0	    0.0-5.5
 B      0.0	5.5	   0.0	    0.0-5.5
 ```
 
+Turn off the power on Port A (only A) (if needed):
+
+```
+glasgow voltage A 0
+```
+
+Result:
+
+```
+Port	Vio	Vlimit	Vsense	Vsense(range)
+A      0.0	3.3	   0.0	    0.0-5.5	
+B      0.0	5.5	   0.0	    0.0-5.5
+```
+
+
 ### 2. Interacting with the SPI flash device (target/peripheral) 
 
 The Glasgow software comes with applets (`glasgow run --help`). 
@@ -214,3 +229,5 @@ Result:
 | Chip | Size | Total Time |
 | ------------- | ------------- | ------------- |
 | IS25CQ032 | 4194304 | real 5m36.483s  |
+
+
