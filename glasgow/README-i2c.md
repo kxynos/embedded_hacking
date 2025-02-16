@@ -55,5 +55,5 @@ glasgow script read_edid.py i2c-initiator --port A --pin-scl 0 --pin-sda 1 -V 3.
 hexdump -C output.bin
 ```
 
-## i2c - writing to part and to whole chip
+## i2c - Writing to part and to whole chip
 TODO
