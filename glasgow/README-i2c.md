@@ -24,11 +24,9 @@ We can then scan for the address and use it to read 2 bytes from the chip:
 ```
 >>> await iface.scan()
 {80}
-
 >>> await iface.read(80, 2)
-
 <memory at 0xffff9a35b940>
-_.hex()
+>>> _.hex()
 '0042'
 ```
 
