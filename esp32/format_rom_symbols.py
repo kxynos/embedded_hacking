@@ -107,8 +107,8 @@ def write_output_consolidated(files: List[Path], lines_map: dict, out_path: Path
             lines = lines_map.get(f, [])
             if not lines:
                 continue
-            out.write(f"# From {f}\n")
-            out.write("\n".join(lines) + "\n\n")
+            #out.write(f"# From {f}\n")
+            out.write("\n".join(lines) + "\n")
     print(f"Wrote consolidated output to {out_path}")
 
 
