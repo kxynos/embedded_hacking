@@ -2,6 +2,8 @@
 
 https://www.waveshare.com/esp32-s3-rs485-can.htm
 
+You will need to connect the A+ to D+ and B- to D- (on Delta). Configure the baud rate (Modbus RTU) via the application in Advanced Configuration, Load management, external load management. 
+
 Flash the Wavesahre with ESPHome (via website) and connect it to your wireless. 
 
 Setup a configuration and try this (example is for a Delta AC Max Basic) : 
